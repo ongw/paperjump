@@ -75,8 +75,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Persistent Data
         //For Storing use:
-        UserDefaults.standard.set("player1_equip", forKey: "smartfrog")
-        UserDefaults.standard.set("player2_equip", forKey: "rainbowfrog")
+        UserDefaults.standard.set("smartfrog", forKey: "player1_equip")
+        UserDefaults.standard.set("rainbowfrog", forKey: "player2_equip")
         
         //for loading use:
         //let storageVal =  UserDefaults.standard.string(forKey: "testkey")
