@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090868272425DFED0054A055 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090868262425DFED0054A055 /* MSButtonNode.swift */; };
+		0982CA882426BF100080709C /* Equip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0982CA872426BF100080709C /* Equip.swift */; };
 		DE36B89E24067CCF00D1BA08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36B89D24067CCF00D1BA08 /* AppDelegate.swift */; };
 		DE36B8A024067CCF00D1BA08 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DE36B89F24067CCF00D1BA08 /* GameScene.sks */; };
 		DE36B8A224067CCF00D1BA08 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = DE36B8A124067CCF00D1BA08 /* Actions.sks */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		090868262425DFED0054A055 /* MSButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		0982CA872426BF100080709C /* Equip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equip.swift; sourceTree = "<group>"; };
 		DE36B89A24067CCF00D1BA08 /* Paperjump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paperjump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE36B89D24067CCF00D1BA08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE36B89F24067CCF00D1BA08 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -67,11 +71,13 @@
 			isa = PBXGroup;
 			children = (
 				DE36B89D24067CCF00D1BA08 /* AppDelegate.swift */,
+				0982CA872426BF100080709C /* Equip.swift */,
 				DE36B89F24067CCF00D1BA08 /* GameScene.sks */,
 				DE36B8A124067CCF00D1BA08 /* Actions.sks */,
 				DE36B8A324067CCF00D1BA08 /* GameScene.swift */,
 				DE36B8B72406843600D1BA08 /* Lilypad.sks */,
 				DEBD4916240708EA00B0106E /* Lilypad.swift */,
+				090868262425DFED0054A055 /* MSButtonNode.swift */,
 				DEBD4918240716EE00B0106E /* Frog.swift */,
 				DE36B8A524067CCF00D1BA08 /* GameViewController.swift */,
 				DE36B8A724067CCF00D1BA08 /* Main.storyboard */,
@@ -159,6 +165,8 @@
 				DE36B8A424067CCF00D1BA08 /* GameScene.swift in Sources */,
 				DE36B8A624067CCF00D1BA08 /* GameViewController.swift in Sources */,
 				DE36B89E24067CCF00D1BA08 /* AppDelegate.swift in Sources */,
+				0982CA882426BF100080709C /* Equip.swift in Sources */,
+				090868272425DFED0054A055 /* MSButtonNode.swift in Sources */,
 				DEBD4919240716EF00B0106E /* Frog.swift in Sources */,
 				DEBD4917240708EA00B0106E /* Lilypad.swift in Sources */,
 			);
