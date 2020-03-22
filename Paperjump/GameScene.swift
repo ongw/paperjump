@@ -44,6 +44,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var invOptSix: Equip!
     /* ----------------- */
     
+    /* Main Menu */
+    var clickToPlay: MSButtonNode!
+    var clickToCustomize: MSButtonNode!
+    var clickToBack: MSButtonNode!
+
+
+    /* ----------------- */
+    
     
     var lilyPads: [Lilypad] = []
     
@@ -70,6 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         lilyPads.last?.lotus.isHidden = false
+        
         
 /* ---------------------------------- Equipment ------------------------ */
         
@@ -165,6 +174,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.saveSelection(optionVal: "rainbowfrog")
         }
 /* ------------------------------ End Equipment ------------------------------- */
+        
+        /* Main Menu */
+     
+        
+        clickToPlay = childNode(withName: "click_play_button") as? MSButtonNode
+        clickToCustomize = childNode(withName: "customize_button") as? MSButtonNode
+        
+        clickToBack = childNode(withName: "equip_back_button") as? MSButtonNode
+        
+        clickToPlay.selectedHandler = {
+            self.cameraNode.position = CGPoint(x: 0.0,  y: 0.0)
+        }
+        
+        clickToCustomize.selectedHandler = {
+            self.cameraNode.position = CGPoint(x: 1610.427,  y: 143.204)
+        }
+        
+        clickToBack.selectedHandler = {
+            self.cameraNode.position = CGPoint(x: 2878.803,  y: 96.367)
+        }
+               
+        
+        /* ------------------ */
         
     }
     
