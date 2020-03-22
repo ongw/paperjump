@@ -78,8 +78,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         lilyPads.last?.lotus.isHidden = false
-        
-        
 /* ---------------------------------- Equipment ------------------------ */
         
         //Persistent Data
@@ -219,6 +217,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        /* Setup changing of skins*/
+        let playerOne_Skin =  UserDefaults.standard.string(forKey: "player1_equip")
+        let playerTwo_Skin = UserDefaults.standard.string(forKey: "player2_equip")
+        
+        let texture1 = SKTexture(imageNamed: playerOne_Skin!)
+        frog1.texture = texture1
+        
+        let texture2 = SKTexture(imageNamed:playerTwo_Skin!)
+        frog2.texture = texture2
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -276,15 +283,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func setFrog(frog frogNode:Frog, toLilyPad lilypadNode: Lilypad) {
         let lilypadPosition = lilypadNode.convert(lilypadNode.position, to: self)
-        
-        let playerOne_Skin =  UserDefaults.standard.string(forKey: "player1_equip")
-        let playerTwo_Skin = UserDefaults.standard.string(forKey: "player2_equip")
-        
-        let texture1 = SKTexture(imageNamed: playerOne_Skin!)
-        frog1.texture = texture1
-        
-        let texture2 = SKTexture(imageNamed:playerTwo_Skin!)
-        frog2.texture = texture2
         
         if (frogNode.position == lilypadPosition) {
             return
