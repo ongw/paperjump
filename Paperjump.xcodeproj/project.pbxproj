@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		090868272425DFED0054A055 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090868262425DFED0054A055 /* MSButtonNode.swift */; };
 		0982CA882426BF100080709C /* Equip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0982CA872426BF100080709C /* Equip.swift */; };
+		B93BEECF2428078100C330D3 /* Paperland.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B93BEECE2428075F00C330D3 /* Paperland.ttf */; };
 		DE36B89E24067CCF00D1BA08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE36B89D24067CCF00D1BA08 /* AppDelegate.swift */; };
 		DE36B8A024067CCF00D1BA08 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DE36B89F24067CCF00D1BA08 /* GameScene.sks */; };
 		DE36B8A224067CCF00D1BA08 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = DE36B8A124067CCF00D1BA08 /* Actions.sks */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		090868262425DFED0054A055 /* MSButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		0982CA872426BF100080709C /* Equip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equip.swift; sourceTree = "<group>"; };
+		B93BEECE2428075F00C330D3 /* Paperland.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Paperland.ttf; sourceTree = "<group>"; };
 		DE36B89A24067CCF00D1BA08 /* Paperjump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Paperjump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE36B89D24067CCF00D1BA08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE36B89F24067CCF00D1BA08 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				DE36B89C24067CCF00D1BA08 /* Paperjump */,
 				DE36B89B24067CCF00D1BA08 /* Products */,
+				B93BEECE2428075F00C330D3 /* Paperland.ttf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +149,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B93BEECF2428078100C330D3 /* Paperland.ttf in Resources */,
 				DE36B8A924067CCF00D1BA08 /* Main.storyboard in Resources */,
 				DE36B8A024067CCF00D1BA08 /* GameScene.sks in Resources */,
 				DE36B8AB24067CD100D1BA08 /* Assets.xcassets in Resources */,

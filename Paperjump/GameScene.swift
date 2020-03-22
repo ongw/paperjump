@@ -6,6 +6,8 @@
 //  Copyright © 2020 Wes Ong. All rights reserved.
 //
 
+// PAPERLAND FONT https://www.dafont.com/paperland.font
+
 import SpriteKit
 import GameplayKit
 
@@ -36,6 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var invSelectBtn: MSButtonNode!
     var invPlayerLabel: SKLabelNode!
+
     var invOptOne: Equip!
     var invOptTwo: Equip!
     var invOptThree: Equip!
@@ -48,6 +51,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var clickToPlay: MSButtonNode!
     var clickToCustomize: MSButtonNode!
     var clickToBack: MSButtonNode!
+    var menuFrog: SKSpriteNode!
+    var menuFrogTwo: SKSpriteNode!
 
 
     /* ----------------- */
@@ -79,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         lilyPads.last?.lotus.isHidden = false
 /* ---------------------------------- Equipment ------------------------ */
-        
+    
         //Persistent Data
         //For Storing use:
         UserDefaults.standard.set("smartfrog", forKey: "player1_equip")
@@ -193,7 +198,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.cameraNode.position = CGPoint(x: 2878.803,  y: 96.367)
         }
                
+        menuFrog = childNode(withName: "main_menu_frog") as? SKSpriteNode
         
+        menuFrogTwo = childNode(withName: "main_menu_frog2") as? SKSpriteNode
+               
+        
+    
+           
         /* ------------------ */
         
     }
@@ -226,6 +237,67 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let texture2 = SKTexture(imageNamed:playerTwo_Skin!)
         frog2.texture = texture2
+        
+        if(self.menuFrog.position.y  > 1200 || self.menuFrog.position.x  > 3700) {
+            let new_y  = Double.random(in: -800.0 ..< 200.0)
+            self.menuFrog.position = CGPoint(x: 2100.0, y: new_y)
+            
+            let frog_type  = Int.random(in: 0 ..< 6)
+
+            if(frog_type == 0) {
+                menuFrog.texture = SKTexture(imageNamed: "smartfrog")
+            } else if (frog_type == 1) {
+                menuFrog.texture = SKTexture(imageNamed: "frog1")
+            } else if (frog_type == 2) {
+                menuFrog.texture = SKTexture(imageNamed: "frog2")
+            } else if (frog_type == 3) {
+                menuFrog.texture = SKTexture(imageNamed: "coolfrog")
+            } else if (frog_type == 4) {
+                menuFrog.texture = SKTexture(imageNamed: "mustachefrog")
+            } else {
+                 menuFrog.texture = SKTexture(imageNamed: "rainbowfrog")
+            }
+
+
+        } else {
+            let new_y  = self.menuFrog.position.y + 5.0
+            let new_x  = self.menuFrog.position.x + 5.0
+            self.menuFrog.position = CGPoint(x: new_x,  y: new_y)
+        }
+        
+                
+        if(self.menuFrogTwo.position.y  < -900.0  || self.menuFrogTwo.position.x  < 2230.707) {
+            let new_y  = Double.random(in: 200.0 ..< 900.0)
+            self.menuFrogTwo.position = CGPoint(x: 3600.0, y: new_y)
+            
+            let frog_type  = Int.random(in: 0 ..< 6)
+
+             if(frog_type == 0) {
+                 menuFrogTwo.texture = SKTexture(imageNamed: "smartfrog")
+             } else if (frog_type == 1) {
+                 menuFrogTwo.texture = SKTexture(imageNamed: "frog1")
+             } else if (frog_type == 2) {
+                 menuFrogTwo.texture = SKTexture(imageNamed: "frog2")
+             } else if (frog_type == 3) {
+                 menuFrogTwo.texture = SKTexture(imageNamed: "coolfrog")
+             } else if (frog_type == 4) {
+                 menuFrogTwo.texture = SKTexture(imageNamed: "mustachefrog")
+             } else {
+                  menuFrogTwo.texture = SKTexture(imageNamed: "rainbowfrog")
+             }
+            
+           } else {
+               let new_y  = self.menuFrogTwo.position.y - 5.0
+               let new_x  = self.menuFrogTwo.position.x - 5.0
+               self.menuFrogTwo.position = CGPoint(x: new_x,  y: new_y)
+           }
+               
+        
+   
+              
+        
+   
+      
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -384,3 +456,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 /* -------------------------------- End Equipment ------------------------ */
 }
+
