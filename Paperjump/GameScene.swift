@@ -11,6 +11,10 @@
 import SpriteKit
 import GameplayKit
 
+enum GameSceneState {
+    case active, gameOver
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let FROG_SPEED: Int = 350
@@ -24,14 +28,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var frog1Score: Int = 0 {
         didSet {
             self.frog1ScoreLabel.text = "\(String(self.frog1Score))"
+            self.frog1.setScale(CGFloat(1+Double(frog1Score)*0.1));
+            self.setFrogBorders()
         }
     }
     var frog2ScoreLabel: SKLabelNode!
     var frog2Score: Int = 0 {
         didSet {
             self.frog2ScoreLabel.text = "\(String(self.frog2Score))"
+            self.frog2.setScale(CGFloat(1+Double(frog2Score)*0.1));
+            self.setFrogBorders()
         }
     }
+    
+    var gameState: GameSceneState = .active
     
     /* Inventory */
     var isPlayerOne = true
@@ -211,6 +221,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        if gameState != .active { return }
+        
         for touch in touches {
             
             let frogNode = touch.location(in: self.camera!).y < -10 ? frog1! : frog2!
@@ -291,16 +303,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                let new_x  = self.menuFrogTwo.position.x - 5.0
                self.menuFrogTwo.position = CGPoint(x: new_x,  y: new_y)
            }
-               
-        
-   
-              
-        
-   
-      
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        if gameState != .active { return }
+        
         /* Get references to bodies involved in collision */
         let contactA = contact.bodyA
         let contactB = contact.bodyB
@@ -338,6 +346,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 setFrog(frog: frogNode, toLilyPad: lilypadNode)
             }
+            else if (lilypadNode.isOccupied && lilypadNode != frogNode.currentLilypad) {
+                if (frog1Score > frog2Score) {
+                    gameState = .gameOver
+                    setFrog(frog: frogNode, toLilyPad: lilypadNode)
+                    frog2.isHidden = true
+                    print("Player 1 wins!")
+                }
+                else if (frog2Score > frog1Score) {
+                    gameState = .gameOver
+                    setFrog(frog: frogNode, toLilyPad: lilypadNode)
+                    frog1.isHidden = true
+                    print("Player 2 wins!")
+                }
+            }
         }
         
         if (nodeA.name == "boundary" || nodeB.name == "boundary") {
@@ -370,6 +392,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         frogNode.run(SKAction(named: "FrogRotation")!)
         lilypadNode.run(SKAction(named: "FrogRotation")!)
+    }
+    
+    func setFrogBorders() {
+        frog1.childNode(withName: "yellowBorder")?.isHidden = true
+        frog1.childNode(withName: "redBorder")?.isHidden = true
+        frog2.childNode(withName: "yellowBorder")?.isHidden = true
+        frog2.childNode(withName: "redBorder")?.isHidden = true
+        
+        if (frog1Score > frog2Score) {
+            frog1.childNode(withName: "yellowBorder")?.isHidden = false
+            frog2.childNode(withName: "redBorder")?.isHidden = false
+        }
+        else if (frog2Score > frog1Score) {
+            frog1.childNode(withName: "redBorder")?.isHidden = false
+            frog2.childNode(withName: "yellowBorder")?.isHidden = false
+        }
     }
     
     func generateNewLotus() {
