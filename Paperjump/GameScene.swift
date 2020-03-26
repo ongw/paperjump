@@ -28,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var frog1Score: Int = 0 {
         didSet {
             self.frog1ScoreLabel.text = "\(String(self.frog1Score))"
-            self.frog1.setScale(CGFloat(1+Double(frog1Score)*0.1));
+            self.frog1.setScale(CGFloat(1+Double(frog1Score)*0.05));
             self.setFrogBorders()
         }
     }
@@ -36,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var frog2Score: Int = 0 {
         didSet {
             self.frog2ScoreLabel.text = "\(String(self.frog2Score))"
-            self.frog2.setScale(CGFloat(1+Double(frog2Score)*0.1));
+            self.frog2.setScale(CGFloat(1+Double(frog2Score)*0.05));
             self.setFrogBorders()
         }
     }
@@ -334,6 +334,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if(!lilypadNode.lotus.isHidden) {
                     lilypadNode.lotus.isHidden = true
+                    
+                    lilypadNode.celebrate()
+                    
                     if (nodeA.name == "frog1" || nodeB.name == "frog1") { frog1Score+=1
                     }
                     else {

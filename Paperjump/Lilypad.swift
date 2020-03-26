@@ -14,12 +14,14 @@ class Lilypad: SKSpriteNode {
     public var isOccupied: Bool = false
     
     var lotus: SKSpriteNode!
+    var celebration: SKEmitterNode!
     
     /* You are required to implement this for your subclass to work */
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         lotus = self.childNode(withName: "lotus") as? SKSpriteNode
+        celebration = self.childNode(withName: "celebrationEmitter") as? SKEmitterNode
         
         self.physicsBody = SKPhysicsBody(circleOfRadius: texture!.size().width/2-120)
         self.physicsBody?.affectedByGravity = false
@@ -35,5 +37,19 @@ class Lilypad: SKSpriteNode {
     /* You are required to implement this for your subclass to work */
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
+    }
+    
+    public func celebrate() {
+        
+        let newEmit = celebration.copy() as! SKEmitterNode
+        
+        self.addChild(newEmit)
+        
+        run(SKAction.wait(forDuration: 1.5), completion:  {
+            
+            /* Remove emitter */
+            newEmit.isHidden = true
+            newEmit.removeFromParent()
+        })
     }
 }
