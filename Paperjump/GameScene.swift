@@ -105,8 +105,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
         //Persistent Data
         //For Storing use:
-        UserDefaults.standard.set("smartfrog", forKey: "player1_equip")
-        UserDefaults.standard.set("rainbowfrog", forKey: "player2_equip")
+        if let checkValueOne = UserDefaults.standard.string(forKey: "player1_equip") {
+            print("Not an inital boot - player 1")
+        } else {
+            print("inital boot - player 1")
+            UserDefaults.standard.set("frog1", forKey: "player1_equip")
+        }
+        
+        if let checkValueTwo = UserDefaults.standard.string(forKey: "player2_equip") {
+            print("Not an inital boot - player 2")
+        } else {
+            print("inital boot - player 2")
+            UserDefaults.standard.set("frog2", forKey: "player2_equip")
+        }
         
         //for loading use:
         //let storageVal =  UserDefaults.standard.string(forKey: "testkey")
