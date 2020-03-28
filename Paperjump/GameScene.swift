@@ -67,6 +67,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     /* ----------------- */
     
+    /* Game Over Screen */
+    var mainMenuBtn: MSButtonNode!
+    var playAgainBtn: MSButtonNode!
+    var winningFrog: SKSpriteNode!
+    var player1WinLabel: SKLabelNode!
+    var player2WinLabel: SKLabelNode!
+
+    /* ----------------- */
     
     var lilyPads: [Lilypad] = []
     
@@ -197,7 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         clickToBack = childNode(withName: "equip_back_button") as? MSButtonNode
         
         clickToPlay.selectedHandler = {
-            self.cameraNode.position = CGPoint(x: 0.0,  y: 0.0)
+            self.restartGame()
         }
         
         clickToCustomize.selectedHandler = {
@@ -214,6 +222,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                
         
     
+           
+        /* ------------------ */
+        
+        /* Game Over Screen */
+         
+            
+        mainMenuBtn = childNode(withName: "main_menu_button") as? MSButtonNode
+        playAgainBtn = childNode(withName: "play_again_button") as? MSButtonNode
+        
+        playAgainBtn.selectedHandler = {
+            self.restartGame()
+        }
+        
+        mainMenuBtn.selectedHandler = {
+            self.cameraNode.position = CGPoint(x: 2878.803,  y: 96.367)
+        }
+        
+        winningFrog = childNode(withName: "winning_frog") as? SKSpriteNode
+        
+        player1WinLabel = self.childNode(withName: "player1_win_text") as? SKLabelNode
+        player2WinLabel = self.childNode(withName: "player2_win_text") as? SKLabelNode
            
         /* ------------------ */
         
@@ -354,12 +383,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     gameState = .gameOver
                     setFrog(frog: frogNode, toLilyPad: lilypadNode)
                     frog2.isHidden = true
+                    endGame()
                     print("Player 1 wins!")
                 }
                 else if (frog2Score > frog1Score) {
                     gameState = .gameOver
                     setFrog(frog: frogNode, toLilyPad: lilypadNode)
                     frog1.isHidden = true
+                    endGame()
                     print("Player 2 wins!")
                 }
             }
@@ -392,6 +423,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         frogNode.position = lilypadPosition
         frogNode.physicsBody = tempBody
+        
+        frogNode.removeAllActions()
+        lilypadNode.removeAllActions()
         
         frogNode.run(SKAction(named: "FrogRotation")!)
         lilypadNode.run(SKAction(named: "FrogRotation")!)
@@ -496,5 +530,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.invOptSix.clearBtn()
     }
 /* -------------------------------- End Equipment ------------------------ */
+    
+    /* Game Over and Restart */
+    
+    func restartGame() {
+        frog1Score = 0
+        frog2Score = 0
+        
+        frog1.isHidden = false;
+        frog2.isHidden = false;
+        
+        for lilypad in lilyPads {
+            lilypad.lotus.isHidden = true
+        }
+        
+        lilyPads.last?.lotus.isHidden = false
+        
+        frog1.position = CGPoint(x: -253.2, y: -754.156)
+        frog2.position = CGPoint(x: 253.266, y: 740)
+        
+        gameState = .active
+        
+        self.cameraNode.position = CGPoint(x: 0.0,  y: 0.0)
+    }
+    
+    func endGame() {
+        self.cameraNode.position = CGPoint(x: 4168.418,  y: 76.599)
+        
+        if(frog1Score > frog2Score) {
+            let playerOne_Skin =  UserDefaults.standard.string(forKey: "player1_equip")
+            let texture1 = SKTexture(imageNamed: playerOne_Skin!)
+            winningFrog.texture = texture1
+            player1WinLabel.isHidden = false;
+            player2WinLabel.isHidden = true;
+        } else {
+            let playerTwo_Skin = UserDefaults.standard.string(forKey: "player2_equip")
+            let texture2 = SKTexture(imageNamed:playerTwo_Skin!)
+            winningFrog.texture = texture2
+            player1WinLabel.isHidden = true;
+            player2WinLabel.isHidden = false;
+        }
+    }
 }
 
