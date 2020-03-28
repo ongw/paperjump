@@ -118,20 +118,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("inital boot - player 2")
             UserDefaults.standard.set("frog2", forKey: "player2_equip")
         }
-        
-        //for loading use:
-        //let storageVal =  UserDefaults.standard.string(forKey: "testkey")
-        
-        //to check if it worked use:
-        //if (storageVal == "Kayla is lame"){
-        //    print("true")
-        //}
-        //print (UserDefaults.standard.string(forKey: "testkey"))
-        
-        //to delete values use:
-        // UserDefaults.standard.removeObject(forKey: "testkey")
-        
-        //source: stackoverflow.com/questions/31203241/how-can-i-use-userdefaults-in-swift
 
         // -------------------------------------------------
         invOptOne = childNode(withName: "equip_option1") as? Equip
@@ -393,14 +379,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if (frog1Score > frog2Score) {
                     gameState = .gameOver
                     setFrog(frog: frogNode, toLilyPad: lilypadNode)
-                    frog2.isHidden = true
+                    lilypadNode.isOccupied = false
                     endGame()
                     print("Player 1 wins!")
                 }
                 else if (frog2Score > frog1Score) {
                     gameState = .gameOver
                     setFrog(frog: frogNode, toLilyPad: lilypadNode)
-                    frog1.isHidden = true
+                    lilypadNode.isOccupied = false
                     endGame()
                     print("Player 2 wins!")
                 }
@@ -548,11 +534,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         frog1Score = 0
         frog2Score = 0
         
-        frog1.isHidden = false;
-        frog2.isHidden = false;
-        
         for lilypad in lilyPads {
             lilypad.lotus.isHidden = true
+            
+            if !lilypad.isOccupied {
+                lilypad.removeAllActions()
+            }
         }
         
         lilyPads.last?.lotus.isHidden = false
